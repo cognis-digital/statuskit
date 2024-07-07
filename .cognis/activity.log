@@ -38,3 +38,4 @@
 2026-03-31T15:45:15  feat: with great power comes great test coverage
 2024-06-02T17:41:31  perf(mcp): add pagination to large reports
 2024-06-28T12:58:38  feat(parser): dedupe overlapping findings
+2024-07-07T19:15:45  fix(report): load rules lazily for faster startup
