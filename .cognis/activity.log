@@ -47,3 +47,4 @@
 2024-10-26T13:57:27  style(parser): wire the MCP tool schema
 2024-11-21T08:14:34  ci(io): fix off-by-one in line numbers
 2024-12-19T15:31:41  chore(detect): add color + severity icons
+2024-12-28T10:48:48  docs(scoring): cover the multiline case
