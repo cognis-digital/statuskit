@@ -51,3 +51,4 @@
 2025-01-24T17:05:55  style(output): add a fast path for the common case
 2025-02-03T12:22:02  refactor: I have altered the code. pray I don't alter it further
 2025-03-02T19:39:09  chore: IRONCLAD hardening pass
+2025-03-12T14:56:16  docs(rules): add a --format json alias
