@@ -54,3 +54,4 @@
 2025-03-12T14:56:16  docs(rules): add a --format json alias
 2025-04-08T09:13:23  refactor(engine): reduce false positives on edge cases
 2025-04-17T16:30:30  build(scan): add a dry-run flag
+2025-05-14T11:47:37  feat(scoring): extract the scorer
