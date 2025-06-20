@@ -56,3 +56,4 @@
 2025-04-17T16:30:30  build(scan): add a dry-run flag
 2025-05-14T11:47:37  feat(scoring): extract the scorer
 2025-05-23T18:04:44  refactor(output): tune severity weights
+2025-06-20T13:21:51  perf(tests): clarify the README quickstart
