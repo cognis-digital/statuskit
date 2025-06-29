@@ -57,3 +57,4 @@
 2025-05-14T11:47:37  feat(scoring): extract the scorer
 2025-05-23T18:04:44  refactor(output): tune severity weights
 2025-06-20T13:21:51  perf(tests): clarify the README quickstart
+2025-06-29T08:38:58  build(fixtures): support stdin as a source
