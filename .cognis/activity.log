@@ -59,3 +59,4 @@
 2025-06-20T13:21:51  perf(tests): clarify the README quickstart
 2025-06-29T08:38:58  build(fixtures): support stdin as a source
 2025-07-26T15:55:05  refactor: tidy internals
+2025-08-05T10:12:12  fix(engine): add a regression fixture
