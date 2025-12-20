@@ -66,3 +66,4 @@
 2025-10-16T14:20:40  chore(config): lower memory on big inputs
 2025-11-13T09:37:47  test(cache): document the config keys
 2025-11-22T16:54:54  style(cli): short-circuit on first critical
+2025-12-20T11:11:01  fix(deps): skip binary files by sniffing
