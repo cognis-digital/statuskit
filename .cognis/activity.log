@@ -70,3 +70,4 @@
 2025-12-29T18:28:08  test: trust, but verify
 2026-01-25T13:45:15  docs(detect): add usage examples to help
 2026-02-04T08:02:22  ci(io): improve error messages with context
+2026-03-03T15:19:29  build(config): add a JSON schema for output
