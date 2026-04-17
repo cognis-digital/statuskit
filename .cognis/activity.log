@@ -73,3 +73,4 @@
 2026-03-03T15:19:29  build(config): add a JSON schema for output
 2026-03-12T10:36:36  docs(cache): pin the test dependencies
 2026-04-08T17:53:43  refactor(core): handle empty and malformed input
+2026-04-17T12:10:50  ci(ci): add pagination to large reports
