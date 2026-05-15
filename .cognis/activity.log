@@ -74,3 +74,4 @@
 2026-03-12T10:36:36  docs(cache): pin the test dependencies
 2026-04-08T17:53:43  refactor(core): handle empty and malformed input
 2026-04-17T12:10:50  ci(ci): add pagination to large reports
+2026-05-15T19:27:57  build(docs): trim whitespace in parsed fields
