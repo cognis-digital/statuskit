@@ -22,7 +22,7 @@ statuskit scan .            # → prioritized findings in seconds
 
 ## Contents
 
-- [Why statuskit?](#why) · [Features](#features) · [Quick start](#quick-start) · [Example](#example) · [How it compares](#how-it-compares) · [Integrations](#integrations) · [Install anywhere](#install-anywhere) · [Contributing](#contributing)
+- [Why statuskit?](#why) · [Features](#features) · [Quick start](#quick-start) · [Example](#example) · [How it compares](#how-it-compares) · [Integrations](#integrations) · [Install anywhere](#install-anywhere) · [Related](#related) · [Contributing](#contributing)
 
 <a name="why"></a>
 ## Why statuskit?
@@ -99,6 +99,19 @@ Pipes into your stack: **SARIF** for code-scanning, **JSON** for anything, an **
 | Linux | macOS | Windows | Docker | Cloud |
 |---|---|---|---|---|
 | `scripts/setup-linux.sh` | `scripts/setup-macos.sh` | `scripts/setup-windows.ps1` | `docker run ghcr.io/cognis-digital/statuskit` | [DEPLOY.md](docs/DEPLOY.md) (AWS/Azure/GCP/k8s) |
+
+<div align="right"><a href="#top">↑ back to top</a></div>
+
+<a name="related"></a>
+## Related Cognis tools
+
+- [`probesite`](https://github.com/cognis-digital/probesite) — Synthetic uptime and Playwright checks exported to Prometheus
+- [`alertmux`](https://github.com/cognis-digital/alertmux) — Alert dedup, correlation, and routing in front of Grafana / PagerDuty
+- [`cloudbill`](https://github.com/cognis-digital/cloudbill) — Multi-cloud cost report, anomaly detection, and FOCUS export
+- [`k8scost`](https://github.com/cognis-digital/k8scost) — Kubernetes cost and rightsizing advisor with no Prometheus dependency
+- [`otelbox`](https://github.com/cognis-digital/otelbox) — One-command OpenTelemetry collector + dashboards bundle
+
+**Explore the suite →** [🗂️ all 170+ tools](https://github.com/cognis-digital/cognis-neural-suite) · [⭐ awesome-cognis](https://github.com/cognis-digital/awesome-cognis) · [🔗 cognis-sources](https://github.com/cognis-digital/cognis-sources) · [🤖 uncensored-fleet](https://github.com/cognis-digital/uncensored-fleet) · [🧠 hermes](https://github.com/cognis-digital/hermes)
 
 <div align="right"><a href="#top">↑ back to top</a></div>
 
