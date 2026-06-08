@@ -1,33 +1,11 @@
-"""STATUSKIT — self-hosted status page engine.
-
-Manage components, incidents (with timeline updates), and subscribers, and
-compute an overall status + uptime metrics. Standard library only.
-"""
-from .core import (
-    StatusKit,
-    Component,
-    Incident,
-    IncidentUpdate,
-    Subscriber,
-    ComponentStatus,
-    IncidentStatus,
-    Impact,
-    StatusKitError,
-)
-
-TOOL_NAME = "statuskit"
-TOOL_VERSION = "1.0.0"
-
-__all__ = [
-    "StatusKit",
-    "Component",
-    "Incident",
-    "IncidentUpdate",
-    "Subscriber",
-    "ComponentStatus",
-    "IncidentStatus",
-    "Impact",
-    "StatusKitError",
-    "TOOL_NAME",
-    "TOOL_VERSION",
-]
+"""statuskit — part of the Cognis Neural Suite."""
+try:  # re-export the tool's public API + identity from core
+    from statuskit.core import *  # noqa: F401,F403
+except Exception:  # pragma: no cover
+    pass
+try:
+    from statuskit.core import TOOL_NAME, TOOL_VERSION
+except Exception:  # pragma: no cover
+    TOOL_NAME = "statuskit"
+    TOOL_VERSION = "0.1.0"
+__version__ = TOOL_VERSION
