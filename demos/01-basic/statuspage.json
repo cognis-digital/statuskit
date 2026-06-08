@@ -1,0 +1,40 @@
+{
+  "name": "Acme Cloud Status",
+  "components": [
+    {"id": "api-core", "name": "Core API", "group": "API", "status": "major_outage"},
+    {"id": "api-webhooks", "name": "Webhooks", "group": "API", "status": "operational"},
+    {"id": "cdn-edge", "name": "CDN / Edge", "status": "degraded_performance"},
+    {"id": "db-primary", "name": "Primary Database", "status": "operational"}
+  ],
+  "incidents": [
+    {
+      "id": "inc-2026-001",
+      "title": "Elevated 5xx errors on Core API",
+      "impact": "major",
+      "components": ["api-core"],
+      "created_at": "2026-06-01T14:00:00+00:00",
+      "updates": [
+        {"status": "investigating", "body": "We are investigating elevated error rates.", "at": "2026-06-01T14:00:00+00:00"},
+        {"status": "identified", "body": "Root cause traced to a bad deploy.", "at": "2026-06-01T14:25:00+00:00"},
+        {"status": "monitoring", "body": "Rolled back; watching metrics.", "at": "2026-06-01T14:50:00+00:00"},
+        {"status": "resolved", "body": "Error rates back to baseline.", "at": "2026-06-01T15:10:00+00:00"}
+      ]
+    },
+    {
+      "id": "inc-2026-002",
+      "title": "Intermittent timeouts on Core API",
+      "impact": "major",
+      "components": ["api-core"],
+      "created_at": "2026-06-08T09:30:00+00:00",
+      "updates": [
+        {"status": "investigating", "body": "Some requests are timing out.", "at": "2026-06-08T09:30:00+00:00"},
+        {"status": "identified", "body": "Connection pool exhaustion under load.", "at": "2026-06-08T09:55:00+00:00"}
+      ]
+    }
+  ],
+  "subscribers": [
+    {"email": "ops-all@example.com", "components": []},
+    {"email": "api-team@example.com", "components": ["api-core", "api-webhooks"]},
+    {"email": "cdn-watch@example.com", "components": ["cdn-edge"]}
+  ]
+}
