@@ -16,7 +16,7 @@
 </div>
 
 ```bash
-pip install cognis-statuskit
+pip install "git+https://github.com/cognis-digital/statuskit.git"
 statuskit scan .            # → prioritized findings in seconds
 ```
 
@@ -49,7 +49,7 @@ classic self-host win
 ## Quick start
 
 ```bash
-pip install cognis-statuskit
+pip install "git+https://github.com/cognis-digital/statuskit.git"
 statuskit --version
 statuskit scan .                       # scan current project
 statuskit scan . --format json         # machine-readable
