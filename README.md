@@ -1,78 +1,185 @@
 <a name="top"></a>
+
 <div align="center">
+
+
 
 <img src="https://capsule-render.vercel.app/api?type=rect&color=0:6b46c1,100:2b6cb0&height=120&section=header&text=STATUSKIT&fontSize=48&fontColor=ffffff&fontAlignY=58" width="100%" alt="STATUSKIT"/>
 
+
+
 # STATUSKIT
+
+
 
 ### Self-hosted status page with incident timeline and subscribers
 
+
+
 <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=18&duration=3500&pause=1000&color=6B46C1&center=true&vCenter=true&width=720&lines=Selfhosted+status+page+with+incident+timeline+and+subscriber;Self-hostable+%C2%B7+MCP-native+%C2%B7+CI-ready+%C2%B7+polyglot" width="720"/>
+
+
 
 [![PyPI](https://img.shields.io/pypi/v/cognis-statuskit.svg?color=6b46c1)](https://pypi.org/project/cognis-statuskit/) [![CI](https://github.com/cognis-digital/statuskit/actions/workflows/ci.yml/badge.svg)](https://github.com/cognis-digital/statuskit/actions) [![License: COCL 1.0](https://img.shields.io/badge/License-COCL%201.0-2b6cb0.svg)](LICENSE) [![Suite](https://img.shields.io/badge/Cognis-Neural%20Suite-6b46c1.svg)](https://github.com/cognis-digital)
 
+
+
 *DevOps & Observability — status, synthetics, alerts, and cloud cost.*
+
+
 
 </div>
 
+
+
 ```bash
+
 pip install cognis-statuskit
+
 statuskit scan .            # → prioritized findings in seconds
+
 ```
+
+
 
 ## Contents
 
+
+
 - [Why statuskit?](#why) · [Features](#features) · [Quick start](#quick-start) · [Example](#example) · [Architecture](#architecture) · [AI stack](#ai-stack) · [How it compares](#how-it-compares) · [Integrations](#integrations) · [Install anywhere](#install-anywhere) · [Related](#related) · [Contributing](#contributing)
 
+
+
+## Usage — step by step
+
+`statuskit` reads a status-page JSON config and reports component health, uptime, incidents, and subscriber notifications. Exit codes: `0` ok, `1` findings (non-operational / active incidents on `check`), `2` usage/error.
+
+1. **Install**
+   ```bash
+   pip install statuskit
+   ```
+
+2. **Print overall + per-component status** from a config file:
+   ```bash
+   statuskit status config.json
+   ```
+
+3. **Inspect uptime and incidents** for the same config:
+   ```bash
+   statuskit uptime config.json
+   statuskit incidents config.json
+   ```
+
+4. **Read machine-readable output** with `--format json` (works on every subcommand) and pipe into tooling:
+   ```bash
+   statuskit --format json status config.json | jq '.overall_status'
+   ```
+
+5. **Gate automation/CI** with `check` — it exits non-zero when the page is not fully operational or has active incidents:
+   ```bash
+   statuskit check config.json || echo "status page degraded"
+   ```
+   You can also resolve who to page for an incident: `statuskit notify config.json <incident-id>`.
+
 <a name="why"></a>
+
 ## Why statuskit?
+
+
 
 classic self-host win
 
+
+
 `statuskit` is single-purpose, scriptable, and self-hostable: point it at a target, get prioritized results in the format your workflow already speaks (table · JSON · SARIF), gate CI on it, and let agents drive it over MCP.
 
+
+
 <div align="right"><a href="#top">↑ back to top</a></div>
+
+
 
 <a name="features"></a>
+
 ## Features
 
+
+
 - ✅ Fast, single-purpose CLI
+
 - ✅ JSON / SARIF output for pipelines
+
 - ✅ CI fail-gate (`--fail-on`)
+
 - ✅ MCP server for AI agents
+
 - ✅ Runs on Linux/macOS/Windows · Docker · devcontainer
+
 - ✅ Ports in Python, JavaScript, Go, and Rust (`ports/`)
 
+
+
 <div align="right"><a href="#top">↑ back to top</a></div>
+
+
 
 <a name="quick-start"></a>
+
 ## Quick start
 
+
+
 ```bash
+
 pip install cognis-statuskit
+
 statuskit --version
+
 statuskit scan .                       # scan current project
+
 statuskit scan . --format json         # machine-readable
+
 statuskit scan . --fail-on high        # CI gate (non-zero exit)
+
 ```
 
+
+
 <div align="right"><a href="#top">↑ back to top</a></div>
+
+
 
 <a name="example"></a>
+
 ## Example
 
+
+
 ```text
+
 $ statuskit scan .
+
   [HIGH    ] STA-001  example finding             (./src/app.py)
+
   [MEDIUM  ] STA-002  another signal              (./config.yaml)
 
+
+
   2 findings · risk score 5 · 38ms
+
 ```
+
+
 
 <div align="right"><a href="#top">↑ back to top</a></div>
 
+
+
 <a name="architecture"></a>
+
 ## Architecture
+
+
 
 ```mermaid
 flowchart LR
@@ -80,86 +187,171 @@ flowchart LR
   P --> OUT[timeline + IOCs]
 ```
 
+
+
 <div align="right"><a href="#top">↑ back to top</a></div>
 
+
+
 <a name="ai-stack"></a>
+
 ## Use it from any AI stack
+
+
 
 `statuskit` is interoperable with every popular way of using AI:
 
+
+
 - **MCP server** — `statuskit mcp` (Claude Desktop, Cursor, Cognis.Studio, [uncensored-fleet](https://github.com/cognis-digital/uncensored-fleet))
+
 - **OpenAI-compatible / JSON** — pipe `statuskit scan . --format json` into any agent or LLM
+
 - **LangChain · CrewAI · AutoGen · LlamaIndex** — wrap the CLI/JSON as a tool in one line
+
 - **CI / scripts** — exit codes + SARIF for non-AI pipelines
+
+
 
 <div align="right"><a href="#top">↑ back to top</a></div>
 
+
+
 <a name="how-it-compares"></a>
+
 ## How it compares
 
+
+
 | | **Cognis statuskit** | Statuspal |
+
 |---|:---:|:---:|
+
 | Self-hostable, no account | ✅ | varies |
+
 | Single command, zero config | ✅ | ⚠️ |
+
 | JSON + SARIF for CI | ✅ | varies |
+
 | MCP-native (AI agents) | ✅ | ❌ |
+
 | Polyglot ports (JS/Go/Rust) | ✅ | ❌ |
+
 | Open license | ✅ COCL | varies |
+
+
 
 *Built in the spirit of **Statuspal / Cachet**, re-framed the Cognis way. Missing a credit? Open a PR.*
 
+
+
 <div align="right"><a href="#top">↑ back to top</a></div>
 
+
+
 <a name="integrations"></a>
+
 ## Integrations
+
+
 
 Pipes into your stack: **SARIF** for code-scanning, **JSON** for anything, an **MCP server** (`statuskit mcp`) for AI agents, and a webhook forwarder for SIEM/Slack/Jira. See [`docs/INTEGRATIONS.md`](docs/INTEGRATIONS.md).
 
+
+
 <div align="right"><a href="#top">↑ back to top</a></div>
+
+
 
 <a name="install-anywhere"></a>
+
 ## Install — every way, every platform
 
+
+
 ```bash
+
 pip install "git+https://github.com/cognis-digital/statuskit.git"    # pip (works today)
+
 pipx install "git+https://github.com/cognis-digital/statuskit.git"   # isolated CLI
+
 uv tool install "git+https://github.com/cognis-digital/statuskit.git" # uv
+
 pip install cognis-statuskit                                          # PyPI (when published)
+
 docker run --rm ghcr.io/cognis-digital/statuskit:latest --help        # Docker
+
 brew install cognis-digital/tap/statuskit                             # Homebrew tap
+
 curl -fsSL https://raw.githubusercontent.com/cognis-digital/statuskit/main/install.sh | sh
+
 ```
 
+
+
 | Linux | macOS | Windows | Docker | Cloud |
+
 |---|---|---|---|---|
+
 | `scripts/setup-linux.sh` | `scripts/setup-macos.sh` | `scripts/setup-windows.ps1` | `docker run ghcr.io/cognis-digital/statuskit` | [DEPLOY.md](docs/DEPLOY.md) (AWS/Azure/GCP/k8s) |
+
+
 
 <div align="right"><a href="#top">↑ back to top</a></div>
 
+
+
 <a name="related"></a>
+
 ## Related Cognis tools
 
+
+
 - [`probesite`](https://github.com/cognis-digital/probesite) — Synthetic uptime and Playwright checks exported to Prometheus
+
 - [`alertmux`](https://github.com/cognis-digital/alertmux) — Alert dedup, correlation, and routing in front of Grafana / PagerDuty
+
 - [`cloudbill`](https://github.com/cognis-digital/cloudbill) — Multi-cloud cost report, anomaly detection, and FOCUS export
+
 - [`k8scost`](https://github.com/cognis-digital/k8scost) — Kubernetes cost and rightsizing advisor with no Prometheus dependency
+
 - [`otelbox`](https://github.com/cognis-digital/otelbox) — One-command OpenTelemetry collector + dashboards bundle
+
+
 
 **Explore the suite →** [🗂️ all 170+ tools](https://github.com/cognis-digital/cognis-neural-suite) · [⭐ awesome-cognis](https://github.com/cognis-digital/awesome-cognis) · [🔗 cognis-sources](https://github.com/cognis-digital/cognis-sources) · [🤖 uncensored-fleet](https://github.com/cognis-digital/uncensored-fleet) · [🧠 engram](https://github.com/cognis-digital/engram)
 
+
+
 <div align="right"><a href="#top">↑ back to top</a></div>
 
+
+
 <a name="contributing"></a>
+
 ## Contributing
+
+
 
 PRs, new rules, and demo scenarios are welcome under the collaboration-pull model — see [CONTRIBUTING.md](CONTRIBUTING.md) and [SECURITY.md](SECURITY.md).
 
+
+
 > ### ⭐ If `statuskit` saved you time, **star it** — it genuinely helps others find it.
+
+
 
 ## License
 
+
+
 Source-available under the **Cognis Open Collaboration License (COCL) v1.0** — free for personal, internal-evaluation, research, and educational use; **commercial / production use requires a license** (licensing@cognis.digital). See [LICENSE](LICENSE).
+
+
 
 ---
 
+
+
 <div align="center"><sub><b><a href="https://cognis.digital">Cognis Digital</a></b> · one of 170+ tools in the <a href="https://github.com/cognis-digital/cognis-neural-suite">Cognis Neural Suite</a> · <i>Making Tomorrow Better Today</i></sub></div>
+
